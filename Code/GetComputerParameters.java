@@ -1,4 +1,4 @@
-package GetComputerInformation;
+package org.apache.hadoop.test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,54 +10,54 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GetComputerParameters {
-	  //×¥È¡¹Ø¼üÊı¾İº¯Êı
+	  //æŠ“å–å…³é”®æ•°æ®å‡½æ•°
 	  public static String GetPCParameters(String str,String ComputerNo){
 		  
 		    String ComputerInfo = null;
-		    String ComputerCPU = "";//Æ¥ÅäµçÄÔcpuĞÍºÅ
-		    String ComputerMemSize = "";//ÄÚ´æÈİÁ¿
-		    String ComputerHardDiskSize = "";//Ó²ÅÌÈİÁ¿
-		    String ComputerHardDiskType = "";//Ó²ÅÌÃèÊö
-		    String ComputerAmdSize = "";//ÏÔ¿¨ÈİÁ¿
-		    String ComputerName = "";//µçÄÔÃû×Ö
+		    String ComputerCPU = "";//åŒ¹é…ç”µè„‘cpuå‹å·
+		    String ComputerMemSize = "";//å†…å­˜å®¹é‡
+		    String ComputerHardDiskSize = "";//ç¡¬ç›˜å®¹é‡
+		    String ComputerHardDiskType = "";//ç¡¬ç›˜æè¿°
+		    String ComputerAmdSize = "";//æ˜¾å¡å®¹é‡
+		    String ComputerName = "";//ç”µè„‘åå­—
 		    
-		    String ComputerNoRegEx = "\\[.*?\\]";//Æ¥ÅäÖĞÀ¨ºÅµÄµçÄÔĞòºÅ
-		    String ComputerCPURegEx = "CPUĞÍºÅ.*?$";//Æ¥ÅäµçÄÔcpuĞÍºÅ
-		    String ComputerMemSizeRegEx = "\\]ÄÚ´æÈİÁ¿.*?$";//ÄÚ´æÈİÁ¿
-		    String ComputerHardDiskSizeRegEx = "Ó²ÅÌÈİÁ¿.*?$";//Ó²ÅÌÈİÁ¿
-		    String ComputerHardDiskTypeRegEx = "Ó²ÅÌÃèÊö.*?$";//Ó²ÅÌÃèÊö
-		    String ComputerAmdSizeRegEx = "ÏÔ´æÈİÁ¿.*?$";//ÏÔ¿¨ÈİÁ¿
-		    String ComputerNameRegEx = ">.*?$";//µçÄÔÃû×Ö
+		    String ComputerNoRegEx = "\\[.*?\\]";//åŒ¹é…ä¸­æ‹¬å·çš„ç”µè„‘åºå·
+		    String ComputerCPURegEx = "CPUå‹å·.*?$";//åŒ¹é…ç”µè„‘cpuå‹å·
+		    String ComputerMemSizeRegEx = "\\]å†…å­˜å®¹é‡.*?$";//å†…å­˜å®¹é‡
+		    String ComputerHardDiskSizeRegEx = "ç¡¬ç›˜å®¹é‡.*?$";//ç¡¬ç›˜å®¹é‡
+		    String ComputerHardDiskTypeRegEx = "ç¡¬ç›˜æè¿°.*?$";//ç¡¬ç›˜æè¿°
+		    String ComputerAmdSizeRegEx = "æ˜¾å­˜å®¹é‡.*?$";//æ˜¾å¡å®¹é‡
+		    String ComputerNameRegEx = ">.*?$";//ç”µè„‘åå­—
 		    
-		    //ÕıÔò±í´ïÊ½Æ¥ÅäµçÄÔĞòºÅ
+		    //æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…ç”µè„‘åºå·
 		    Pattern pNo = Pattern.compile(ComputerNoRegEx);
 		    Matcher matcherNo = pNo.matcher(str);
 		    
-		    //Æ¥ÅäµçÄÔcpuĞÍºÅ
+		    //åŒ¹é…ç”µè„‘cpuå‹å·
 		    Pattern pCPU = Pattern.compile(ComputerCPURegEx);
 		    Matcher matcherCPU = pCPU.matcher(str);
 		    
-		    //Æ¥ÅäÄÚ´æÈİÁ¿
+		    //åŒ¹é…å†…å­˜å®¹é‡
 		    Pattern pMem = Pattern.compile(ComputerMemSizeRegEx);
 		    Matcher matcherMem = pMem.matcher(str);
 		    
-		    //Æ¥ÅäÓ²ÅÌÈİÁ¿
+		    //åŒ¹é…ç¡¬ç›˜å®¹é‡
 		    Pattern pHardDisk = Pattern.compile(ComputerHardDiskSizeRegEx);
 		    Matcher matcherHardDisk = pHardDisk.matcher(str);
 		    
-		    //Æ¥ÅäÓ²ÅÌÃèÊö
+		    //åŒ¹é…ç¡¬ç›˜æè¿°
 		    Pattern pHardDiskType = Pattern.compile(ComputerHardDiskTypeRegEx);
 		    Matcher matcherHardDiskType = pHardDiskType.matcher(str);
 		    
-		    //ÏÔ´æÈİÁ¿
+		    //æ˜¾å­˜å®¹é‡
 		    Pattern pAmd = Pattern.compile(ComputerAmdSizeRegEx);
 		    Matcher matcherAmd = pAmd.matcher(str);
 		    
-		    //µçÄÔÃû×Ö
+		    //ç”µè„‘åå­—
 		    Pattern pName = Pattern.compile(ComputerNameRegEx);
 		    Matcher matcherName = pName.matcher(str);
 		    
-		    //µÃµ½µçÄÔĞòºÅ
+		    //å¾—åˆ°ç”µè„‘åºå·
 		    while(matcherNo.find()){
 		    	String TempComputerNo = matcherNo.group(0).replace("[", "");
 		    	TempComputerNo = TempComputerNo.replace("]", "");
@@ -69,7 +69,7 @@ public class GetComputerParameters {
 		        break;
 		    }
 		    
-		    //µÃµ½µçÄÔcpuĞÍºÅ
+		    //å¾—åˆ°ç”µè„‘cpuå‹å·
 		    while(matcherCPU.find()){
 		    	String TempComputerCPU = matcherCPU.group(0);
 		    	if(!ComputerCPU.equals(TempComputerCPU)){
@@ -80,7 +80,7 @@ public class GetComputerParameters {
 		        break;
 		    }
 		    
-		    //µÃµ½µçÄÔÄÚ´æÈİÁ¿
+		    //å¾—åˆ°ç”µè„‘å†…å­˜å®¹é‡
 		    while(matcherMem.find()){
 		    	String TempComputerMem = matcherMem.group(0).replace("]","");
 		    	if(!ComputerMemSize.equals(TempComputerMem)){
@@ -91,7 +91,7 @@ public class GetComputerParameters {
 		        break;
 		    }
 		    
-		    //µÃµ½µçÄÔÓ²ÅÌÈİÁ¿
+		    //å¾—åˆ°ç”µè„‘ç¡¬ç›˜å®¹é‡
 		    while(matcherHardDisk.find()){
 		    	String TempComputerHardDisk = matcherHardDisk.group(0);
 		    	if(!ComputerHardDiskSize.equals(TempComputerHardDisk)){
@@ -102,7 +102,7 @@ public class GetComputerParameters {
 		        break;
 		    }
 		    
-		    //µÃµ½µçÄÔÓ²ÅÌĞÍºÅ
+		    //å¾—åˆ°ç”µè„‘ç¡¬ç›˜å‹å·
 		    while(matcherHardDiskType.find()){
 		    	String TempComputerHardDiskType = matcherHardDiskType.group(0);
 		    	if(!ComputerHardDiskType.equals(TempComputerHardDiskType)){
@@ -113,7 +113,7 @@ public class GetComputerParameters {
 		        break;
 		    }
 		    
-		    //µÃµ½µçÄÔÏÔ¿¨ÈİÁ¿
+		    //å¾—åˆ°ç”µè„‘æ˜¾å¡å®¹é‡
 		    while(matcherAmd.find()){
 		    	String TempComputerAmd = matcherAmd.group(0);
 		    	if(!ComputerAmdSize.equals(TempComputerAmd)){
@@ -124,7 +124,7 @@ public class GetComputerParameters {
 		        break;
 		    }
 		    
-		    //µÃµ½µçÄÔÃû³Æ
+		    //å¾—åˆ°ç”µè„‘åç§°
 		    while(matcherName.find()){
 		    	String TempComputerName = matcherName.group(0).replace("\"", "");
 		    	TempComputerName = TempComputerName.replace(">", "");
@@ -140,7 +140,7 @@ public class GetComputerParameters {
 				BufferedWriter bw = null;
 				try{
 					
-				    FileWriter fileWriter=new FileWriter("c:\\Result.txt",true);
+				    FileWriter fileWriter=new FileWriter("Result.txt",true);
 				    bw = new BufferedWriter(fileWriter);
 				    bw.write(ComputerInfo);
 				    bw.newLine();  
@@ -158,18 +158,14 @@ public class GetComputerParameters {
 		    }
 		    return ComputerNo;
 	  }
-	   //Ö÷º¯Êı£¬½«Êı¾İ³õ²½´¦Àí
-	  public static void main(String[] args){
-		    try { 
-	            Scanner in = new Scanner(new File("D:/beihangUniversity/¿Î¼ş/Èí¼ş¹¤³ÌÌåÏµ½á¹¹ÊµÑé/Êı¾İ/1.txt")); 
-	            String ComputerNo = "";
-	            while (in.hasNextLine()) {
-	                String str = in.nextLine();
-	                ComputerNo = GetPCParameters(str,ComputerNo);
-	            } 
-	        } catch (FileNotFoundException e) { 
-	            e.printStackTrace(); 
-	        } 
-
+	   //ä¸»å‡½æ•°ï¼Œå°†æ•°æ®åˆæ­¥å¤„ç†
+	  public static String GetComputerInfo(String str,String ComputerNo){
+	            //Scanner in = new Scanner(new File("D:/beihangUniversity/è¯¾ä»¶/è½¯ä»¶å·¥ç¨‹ä½“ç³»ç»“æ„å®éªŒ/æ•°æ®/1.txt")); 
+	           // String ComputerNo = "";
+	           // while (in.hasNextLine()) {
+	                //String str = in.nextLine();
+	                return GetPCParameters(str,ComputerNo);
+	           // } 
+	       
       }
 }
